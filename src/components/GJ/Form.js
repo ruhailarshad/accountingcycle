@@ -157,7 +157,7 @@ const Form = props => {
           </div>
 
           <div>
-            <label>Add Debit Entry </label>
+            <label>Add Credit Entry </label>
             <button
               className={classes.button}
               onClick={() => addClickHandler('c')}
