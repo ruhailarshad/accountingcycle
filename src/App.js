@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import AvailableMeals from './components/GJ/AvailableMeals';
+import JournalList from './components/GJ/JournalList';
 import Form from './components/GJ/Form';
 import Header from './components/Layout/Header';
 function App() {
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       {showForm && <Form onClose={hideFormHandler} />}
       <Header />
-      <AvailableMeals onClick={showFormHandler} />
+      <JournalList onClick={showFormHandler} />
     </div>
   );
 }

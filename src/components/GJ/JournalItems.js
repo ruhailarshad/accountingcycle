@@ -1,10 +1,10 @@
-import { useContext } from 'react';
 
-import classes from './MealItem.module.css';
 
-const MealItem = props => {
+import classes from './JournalItems.module.css';
+
+const JournalItems = props => {
   return (
-    <li className={classes.meal}>
+    <li className={classes.gj}>
       <h4>DATE</h4>
       <div>
         <h4>Debit Info</h4>
@@ -16,4 +16,4 @@ const MealItem = props => {
   );
 };
 
-export default MealItem;
+export default JournalItems;
