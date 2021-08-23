@@ -12,15 +12,21 @@
   position: fixed;
   top: 15vh;
   left: 2%;
-  width: auto;
+  width: 1000px;
   height: auto;
-  margin: 2rem 25rem;
+  margin: 2rem 10rem;
   background-color: white;
   padding: 1rem;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
+}
+
+.cancel-button {
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 @keyframes slide-down {

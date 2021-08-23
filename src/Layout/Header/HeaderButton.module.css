@@ -1,13 +1,13 @@
 .button {
-  cursor: pointer;
-  font: inherit;
-  border: none;
-  background-color: #7f7ec7;
-  color: white;
-  padding: 0.75rem 3rem;
-  align-items: center;
-  border-radius: 25px;
   font-weight: bold;
+  font-size: 13px;
+  height: 50px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button a {
+  color: white !important;
 }
 ul {
   display: flex;
