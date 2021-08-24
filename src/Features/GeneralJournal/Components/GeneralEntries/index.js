@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getGeneralJournal } from '../../actions';
 
 function GeneralEntries({toggleModal}) {
+    
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getGeneralJournal());
+    }, []);
     return (
         <div className="container mx-5 mt-5 h-75">
             <div className="row">

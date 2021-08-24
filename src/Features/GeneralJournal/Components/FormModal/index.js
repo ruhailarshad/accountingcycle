@@ -3,13 +3,10 @@ import React, { useState, useEffect } from 'react'
 import classes from './Form.module.css';
 import Modal from '../../../../components/UI/Modal'
 import {useDispatch} from 'react-redux';
-import {postGeneralEntryAction} from '../../ducks';
-import { postGeneralEntry } from '../../../../services';
 
 function FormModal({ onCloseModal, toggle }) {
   const dispatch = useDispatch();
-  useEffect(async() => {
-    await dispatch(postGeneralEntry());
+  useEffect(() => {
     return () => {
       
     }
@@ -45,7 +42,6 @@ function FormModal({ onCloseModal, toggle }) {
   };
 
   const removeClickHandler = (val, index) => {
-    debugger;
     const list = [...debitVal];
     if (val === 'd') {
       list.splice(index, 1);

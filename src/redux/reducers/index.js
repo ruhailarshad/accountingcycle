@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import {reducer as generalJournalReducer} from '../../Features/GeneralJournal/ducks';
+import generalJournalReducer from '../../Features/GeneralJournal/reducer';
 
 const rootReducer = combineReducers({
     generalJournalReducer,
