@@ -28,6 +28,7 @@ function FormModal({ onCloseModal, toggle }) {
   ]);
 
   const debitInfoChangeHandler = (e, i) => {
+    debugger;
     const { name, value } = e.target;
     const list = [...debitVal];
     list[i][name] = value;
@@ -110,6 +111,7 @@ function FormModal({ onCloseModal, toggle }) {
               value={arr.typeA}
               name={Type === 'Type A' ? 'typeA' : 'typeB'}
             >
+              <option value="">Select Type</option>
               <option value="Asset">Asset</option>
               <option value="Liability">Liability</option>
               <option value="Owner Equity">Owner Equity</option>
