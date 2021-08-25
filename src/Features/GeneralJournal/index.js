@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+//actions
+import { setFormModalActiveStatus } from './actions';
 
 // Components
 import FormModal from './Components/FormModal/index';
-import GeneralEntries from './Components/GeneralEntries'
-
-
+import GeneralEntries from './Components/GeneralEntries';
 
 // Styles
 
 
-const Form = props => {
-
-  const [toggle, setToggle] = useState(true);
+const GeneralEntriesContainer = props => {
+  const dispatch = useDispatch();
+  const { generalJournal: { isFormModalActive } } = useSelector((state) => {
+    const {generalJournal} = state;
+    return {
+      generalJournal,
+    }
+  })
 
   // Modal Close Func
   const toggleModal = () => {
-    setToggle(prev => !prev);
+    dispatch(setFormModalActiveStatus(!isFormModalActive));
   };
 
   return (
     <div>
-      {toggle && <FormModal onCloseModal={toggleModal} />}
+      {isFormModalActive && <FormModal onCloseModal={toggleModal} />}
       <GeneralEntries toggleModal={toggleModal} />
     </div>
   );
 };
 
-export default Form;
+export default GeneralEntriesContainer;

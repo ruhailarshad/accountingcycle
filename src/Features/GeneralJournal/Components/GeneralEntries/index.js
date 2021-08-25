@@ -1,13 +1,36 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getGeneralJournal } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGeneralJournalList } from '../../actions';
 
 function GeneralEntries({toggleModal}) {
-    
     const dispatch = useDispatch();
+    
     useEffect(() => {
-        dispatch(getGeneralJournal());
+        dispatch(getGeneralJournalList());
     }, []);
+
+    const {generalJournal: { generalJounralEntries, loading, generalEntries }} = useSelector((state) => {
+        const {generalJournal} = state;
+        return {
+            generalJournal,
+        };
+    });
+    
+    const renderGeneralEnrties = () => {
+        return generalJounralEntries.map(({accountName, accountType, creditAmount, debitAmount}, index) => {
+            return(
+            <tr>
+                <td>{index + 1}</td>
+                <td>{accountName}</td>
+                <td>{accountType}</td>
+                <td>{creditAmount}</td>
+                <td>{debitAmount}</td>
+            </tr>
+            )
+        })
+    };
+
     return (
         <div className="container mx-5 mt-5 h-75">
             <div className="row">
@@ -32,24 +55,14 @@ function GeneralEntries({toggleModal}) {
                         <thead>
                             <tr>
                                 <td>S No</td>
-                                <td>Account</td>
+                                <td>Account Name</td>
+                                <td>Account Type</td>
                                 <td>Debit Amount</td>
                                 <td>Credit Amount</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
+                           {renderGeneralEnrties()}
                         </tbody>
                     </table>
                 </div>

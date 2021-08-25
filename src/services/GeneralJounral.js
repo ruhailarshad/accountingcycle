@@ -4,7 +4,7 @@ import {BASE_URL} from './BaseURL';
 const GeneralJournalRoute = `${BASE_URL.local}/accounts/general-entries`;
 
 export const postGeneralEntry = (generalEntryPayload) => {
-    return axios.post(GeneralJournalRoute, generalEntryPayload, {'content-type': 'application/json' });
+    return axios.post(GeneralJournalRoute, {entries: generalEntryPayload}, {'content-type': 'application/json' });
 };
 
 

@@ -2,15 +2,15 @@
 import React, { useState, useEffect } from 'react'
 import classes from './Form.module.css';
 import Modal from '../../../../components/UI/Modal'
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { postGeneralEntry } from '../../actions';
 
 function FormModal({ onCloseModal, toggle }) {
   const dispatch = useDispatch();
-  useEffect(() => {
-    return () => {
-      
-    }
-  }, [])
+  const {generalJournal: { isPostingGeneralEntry }} = useSelector((state) => ({
+    generalJournal: state.generalJournal,
+  }));
+
   const [debitVal, setDebitVal] = useState([
     {
       debitInfo: '',
@@ -42,12 +42,13 @@ function FormModal({ onCloseModal, toggle }) {
   };
 
   const removeClickHandler = (val, index) => {
-    const list = [...debitVal];
     if (val === 'd') {
+      const list = [...debitVal];
       list.splice(index, 1);
       setDebitVal(list);
     }
     else {
+      const list = [...creditVal];
       list.splice(index, 1);
       setCreditVal(list);
     }
@@ -59,7 +60,7 @@ function FormModal({ onCloseModal, toggle }) {
         ...debitVal,
         {
           debitInfo: '',
-          debit: '',
+          debit: 0,
           typeA: '',
         },
       ]);
@@ -68,7 +69,7 @@ function FormModal({ onCloseModal, toggle }) {
         ...creditVal,
         {
           creditInfo: '',
-          credit: '',
+          credit: 0,
           typeB: '',
         },
       ]);
@@ -92,7 +93,7 @@ function FormModal({ onCloseModal, toggle }) {
         <div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"> {Name} Amount : </span>
-            <input type="text" class="form-control" placeholder="Account Name" aria-label="Username" aria-describedby="basic-addon1"
+            <input type="number" class="form-control" placeholder="Amount" aria-label="Username" aria-describedby="basic-addon1"
               id={Name}
               onChange={e => fn(e, i)}
               value={arr.debit}
@@ -141,6 +142,12 @@ function FormModal({ onCloseModal, toggle }) {
     'Type B',
     creditInfoChangeHandler
   );
+
+  const postGeneralEntryHandler = () => {
+    const entriesToPost = [...debitVal.map(debitEntry => debitEntry), ...creditVal.map(creditEntry => creditEntry)];
+    dispatch(postGeneralEntry(entriesToPost));
+  }
+
   return (
     <Modal onClose={onCloseModal} isModalActive={toggle}>
       <form className={classes.overallform}>
@@ -177,6 +184,14 @@ function FormModal({ onCloseModal, toggle }) {
                 +
             </button>
             </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-8" />
+          <div className="col-lg-4">
+            <button type="submit" className="btn btn-primary" onClick={postGeneralEntryHandler} disabled={isPostingGeneralEntry}>
+              Submit
+            </button>
           </div>
         </div>
       </div>
