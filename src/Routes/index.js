@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../Features/Dashboard';
 import GeneralJournal from '../Features/GeneralJournal';
 import TrialBalance from '../Features/TrialBalance';
+import FinancialStatement from '../Features/FinancialStatement';
 
 
 function RouterSwitch() {
@@ -11,6 +12,7 @@ function RouterSwitch() {
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/general-journal" component={GeneralJournal} />
             <Route exact path="/trial-balance" component={TrialBalance} />
+            <Route exact path="/financial-statement" component={FinancialStatement} />
         </Switch>
     )
 }

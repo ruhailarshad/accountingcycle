@@ -1,21 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getTrialBalance } from './actions'
+import TrialBalanceSheetComponent from './components/TrialBalanceSheet';
 
 function TrialBalance() {
     useEffect(() => {
         dispatch(getTrialBalance());
     }, []);
     const dispatch = useDispatch();
-    const { trialBalanceReducer } = useSelector(state => {
-        const { trialBalanceReducer } = state; 
+    const { TrialBalanceSheet: {loading, trialBalanceList} } = useSelector(state => {
+        const { TrialBalanceSheet } = state; 
         return {
-            trialBalanceReducer,
+            TrialBalanceSheet,
         };
     });
+    console.log(trialBalanceList);
+    if(loading) return <div>Loading</div>;
     return (
         <div>
-            Trial Balance
+            <TrialBalanceSheetComponent {...trialBalanceList}  />
         </div>
     )
 }

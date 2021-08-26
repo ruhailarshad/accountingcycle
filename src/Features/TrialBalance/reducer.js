@@ -2,7 +2,12 @@ import actionTypes from '../../redux/ActionTypes';
 
 const initialState = {
     loading: false,
-    trialBalanceList: [],
+    trialBalanceList: {
+        creditAccountDetails: {},
+        creditAccountsSum: 0,
+        debitAccountsDetails: {},
+        debitAccountsSum: 0,
+    },
 };
 
 export default function TrialBalanceReducer (state=initialState, action) {

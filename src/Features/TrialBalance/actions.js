@@ -5,9 +5,9 @@ export const getTrialBalance = () => {
         dispatch(getTrialBalanceSheetRequest());
         try {
             const { data } = await getTrialBalanceSheet();
-            getTrialBalanceSheetSuccess(data);
+            dispatch(getTrialBalanceSheetSuccess(data));
         } catch (error) {
-            getTrialBalanceSheetError();
+            dispatch(getTrialBalanceSheetError());
         }
     };
 };

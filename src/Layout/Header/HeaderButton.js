@@ -7,11 +7,11 @@ const HeaderCartButton = props => {
   return (
     <ul className="my-3">
       {HeaderButtons.map(({displayName, to}) => (
-        <li className={`${BootstrapColClassHeader} ${classes.button} btn btn-primary h-25`}>
-          <Link to={to}>
+          <Link to={to} key={to}>
+            <li className={`${BootstrapColClassHeader} ${classes.button} btn btn-primary h-25`}>
             {displayName}
+            </li>
           </Link>
-        </li>
       ))}
     </ul>
   );

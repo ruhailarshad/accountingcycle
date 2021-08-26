@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import classes from './Form.module.css';
 import Modal from '../../../../components/UI/Modal'
 import {useDispatch, useSelector} from 'react-redux';

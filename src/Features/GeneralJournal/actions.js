@@ -40,7 +40,8 @@ export const postGeneralEntry = (generalEntries) => {
     return async (dispatch, getState, { services: { postGeneralEntry } }) => {
         dispatch(postGeneralJournalEntryRequest());
         try {
-            const {data: {data: generalEntries}} = await postGeneralEntry(entries);
+            // eslint-disable-next-line no-unused-vars
+            const {data: {data: _generalEntries}} = await postGeneralEntry(entries);
             dispatch(getGeneralJournalList());
             dispatch(setFormModalActiveStatus(false));
         }

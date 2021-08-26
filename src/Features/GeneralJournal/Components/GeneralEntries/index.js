@@ -10,7 +10,8 @@ function GeneralEntries({toggleModal}) {
         dispatch(getGeneralJournalList());
     }, []);
 
-    const {generalJournal: { generalJounralEntries, loading, generalEntries }} = useSelector((state) => {
+    // eslint-disable-next-line no-unused-vars
+    const {generalJournal: { generalJounralEntries, _loading}} = useSelector((state) => {
         const {generalJournal} = state;
         return {
             generalJournal,
