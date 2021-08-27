@@ -7,9 +7,6 @@ input,
 select {
   margin-right: 10px;
 }
-.addmore {
-  display: flex;
-}
 .button {
   cursor: pointer;
   font: inherit;
@@ -30,10 +27,23 @@ select {
   color: red;
 }
 .submit-error{
-  position: relative;
-  bottom:40px
+ display: flex;
+ justify-content: space-around;
  
 }
 .submit-button{
 margin-left: 5rem;
+
 }
+.entry{
+  display: flex;
+  
+}
+.entry div button{
+  margin-left: 10px;
+  width: 5rem;
+}
+.entry div label{
+  flex:4;
+}
+
