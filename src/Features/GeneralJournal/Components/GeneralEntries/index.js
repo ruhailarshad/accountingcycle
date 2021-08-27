@@ -25,8 +25,8 @@ function GeneralEntries({toggleModal}) {
                 <td>{index + 1}</td>
                 <td>{accountName}</td>
                 <td>{accountType}</td>
-                <td>{creditAmount}</td>
                 <td>{debitAmount}</td>
+                <td>{creditAmount}</td>
             </tr>
             )
         })

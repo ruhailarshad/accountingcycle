@@ -13,10 +13,9 @@ export const getGeneralJournalList = () => {
     };
 };
 
-export const getGeneralJournalListRequest = (isLoading) => {
+export const getGeneralJournalListRequest = () => {
     return {
         type: actionTypes.GET_GENERAL_JOURNAL_LIST_REQUEST,
-        payload: { isLoading }
     }
 };
 
