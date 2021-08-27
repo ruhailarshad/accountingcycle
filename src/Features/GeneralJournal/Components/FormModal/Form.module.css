@@ -26,3 +26,14 @@ select {
 .button:hover {
   background-color: #341c6e;
 }
+.error{
+  color: red;
+}
+.submit-error{
+  position: relative;
+  bottom:40px
+ 
+}
+.submit-button{
+margin-left: 5rem;
+}

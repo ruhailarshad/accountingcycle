@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import LoadingSpinner from '../../../../components/UI/LoadingSpinner';
 import { getGeneralJournalList } from '../../actions';
+import classes from './generalentries.module.css';
 
 function GeneralEntries({toggleModal}) {
     const dispatch = useDispatch();
@@ -11,7 +13,7 @@ function GeneralEntries({toggleModal}) {
     }, []);
 
     // eslint-disable-next-line no-unused-vars
-    const {generalJournal: { generalJounralEntries, _loading}} = useSelector((state) => {
+    const {generalJournal: { generalJounralEntries, loading}} = useSelector((state) => {
         const {generalJournal} = state;
         return {
             generalJournal,
@@ -19,16 +21,20 @@ function GeneralEntries({toggleModal}) {
     });
     
     const renderGeneralEnrties = () => {
-        return generalJounralEntries.map(({accountName, accountType, creditAmount, debitAmount}, index) => {
+        return generalJounralEntries.map((singleTransaction, index) => {
+            return singleTransaction.map((entry)=>{
+            const {accountName, accountType, creditAmount, debitAmount} = entry;
             return(
-            <tr>
-                <td>{index + 1}</td>
-                <td>{accountName}</td>
-                <td>{accountType}</td>
-                <td>{debitAmount}</td>
-                <td>{creditAmount}</td>
-            </tr>
+                <tr>
+                    <td>{index + 1}</td>
+                    <td>{accountName}</td>
+                    <td>{accountType}</td>
+                    <td>{debitAmount}</td>
+                    <td>{creditAmount}</td>
+                    <br/>
+                </tr>
             )
+            })   
         })
     };
 
@@ -52,7 +58,7 @@ function GeneralEntries({toggleModal}) {
                     </div>
                 </div>
                 <div className="col-12">
-                    <table className="table table-dark table-striped">
+                    <table className="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <td>S No</td>
@@ -63,7 +69,8 @@ function GeneralEntries({toggleModal}) {
                             </tr>
                         </thead>
                         <tbody>
-                           {renderGeneralEnrties()}
+                        {loading && <LoadingSpinner/>}
+                           {!loading && renderGeneralEnrties()}
                         </tbody>
                     </table>
                 </div>

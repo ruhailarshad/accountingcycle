@@ -26,9 +26,10 @@ function FormModal({ onCloseModal, toggle }) {
       typeB: '',
     },
   ]);
+  const [error,setError]=useState('');
 
   const debitInfoChangeHandler = (e, i) => {
-    debugger;
+    
     const { name, value } = e.target;
     const list = [...debitVal];
     list[i][name] = value;
@@ -61,7 +62,7 @@ function FormModal({ onCloseModal, toggle }) {
         ...debitVal,
         {
           debitInfo: '',
-          debit: 0,
+          debit: '',
           typeA: '',
         },
       ]);
@@ -70,7 +71,7 @@ function FormModal({ onCloseModal, toggle }) {
         ...creditVal,
         {
           creditInfo: '',
-          credit: 0,
+          credit: '',
           typeB: '',
         },
       ]);
@@ -87,7 +88,7 @@ function FormModal({ onCloseModal, toggle }) {
             <span class="input-group-text" id="basic-addon1"> {Info}: </span>
             <input type="text" class="form-control" placeholder="Account Name" aria-label="Username" aria-describedby="basic-addon1" id={Info}
               onChange={e => fn(e, i)}
-              value={arr.debitInfo}
+              value={Info === 'Debit Info' ? arr.debitInfo : arr.creditInfo}
               name={Info === 'Debit Info' ? 'debitInfo' : 'creditInfo'} />
           </div>
         </div>
@@ -97,7 +98,7 @@ function FormModal({ onCloseModal, toggle }) {
             <input type="number" class="form-control" placeholder="Amount" aria-label="Username" aria-describedby="basic-addon1"
               id={Name}
               onChange={e => fn(e, i)}
-              value={arr.debit}
+              value={Info === 'Debit Info' ? arr.debit : arr.credit}
               name={Name === 'Debit' ? 'debit' : 'credit'} />
           </div>
         </div>
@@ -108,7 +109,7 @@ function FormModal({ onCloseModal, toggle }) {
               class="form-control"
               id="TypeA"
               onChange={e => fn(e, i)}
-              value={arr.typeA}
+              value={Info === 'Debit Info' ? arr.typeA : arr.typeB}
               name={Type === 'Type A' ? 'typeA' : 'typeB'}
             >
               <option value="">Select Type</option>
@@ -122,7 +123,7 @@ function FormModal({ onCloseModal, toggle }) {
         </div>
         <div>
           <button disabled={i===0} className="btn btn-primary"
-            onClick={() => { Name === 'debit' ? removeClickHandler('d', i) : removeClickHandler('c', i) }}
+            onClick={(e) => { Name === 'Debit' ? removeClickHandler('d', i) : removeClickHandler('c', i) }}
           >
             -
           </button>
@@ -145,9 +146,18 @@ function FormModal({ onCloseModal, toggle }) {
     creditInfoChangeHandler
   );
 
+
   const postGeneralEntryHandler = () => {
+ 
+    const debitValue=debitVal.reduce((acc,{debit})=>acc+ +debit,0);
+     const creditValue=creditVal.reduce((acc,{credit})=>acc+ +credit,0);
+
+    if(debitValue===creditValue){
     const entriesToPost = [...debitVal.map(debitEntry => debitEntry), ...creditVal.map(creditEntry => creditEntry)];
     dispatch(postGeneralEntry(entriesToPost));
+    }else{
+      setError('Debit and Credit value should be equal');
+    }
   }
 
   return (
@@ -158,14 +168,14 @@ function FormModal({ onCloseModal, toggle }) {
       </form>
       <br />
       <div className={`${classes.addmore} row`}>
-        <div className="col-lg-6">
-          <div className="row mx-2">
-            <div className="col-lg-6 ml-5">
+        <div className="col-lg-4">
+          <div className="row mx-1">
+            <div className="col-lg-6 ml-1">
               <label>Add Debit Entry </label>
             </div>
             <div className="col-lg-6">
               <button
-                className={`mr-2 btn btn-primary w-100`}
+                className={`mr-2 btn btn-primary w-50`}
                 onClick={() => addClickHandler('d')}
               >
                 +
@@ -173,14 +183,14 @@ function FormModal({ onCloseModal, toggle }) {
             </div>
           </div>
         </div>
-        <div className="col-lg-6 mr-3">
+        <div className="col-lg-4 mr-3">
           <div className="row">
             <div className="col-lg-6">
               <label>Add Credit Entry </label>
             </div>
             <div className="col-lg-6">
               <button
-                className={`mr-2 btn btn-primary w-100`}
+                className={`mr-2 btn btn-primary w-50`}
                 onClick={() => addClickHandler('c')}
               >
                 +
@@ -188,10 +198,12 @@ function FormModal({ onCloseModal, toggle }) {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className={`row ${classes['submit-error']}`}>
           <div className="col-lg-8" />
           <div className="col-lg-4">
-            <button type="submit" className="btn btn-primary" onClick={postGeneralEntryHandler} disabled={isPostingGeneralEntry}>
+           
+              <p className="alert alert-warning" hidden={!error}>{error}</p>
+            <button type="submit" className={`btn btn-primary ${classes['submit-button']}`} onClick={postGeneralEntryHandler} disabled={isPostingGeneralEntry}>
               Submit
             </button>
           </div>
