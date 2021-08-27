@@ -1,10 +1,15 @@
 .button {
+  display:block;
+  border-radius: 30%;
   font-weight: bold;
   font-size: 13px;
   height: 50px !important;
   display: flex;
   justify-content: center;
   align-items: center;
+font-family: 'Lato', sans-serif;
+font-family: 'Quicksand', sans-serif;
+
 }
 .button a {
   color: white !important;
