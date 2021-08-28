@@ -3,15 +3,15 @@ import { HeaderButtons } from '../../Scripts/List';
 import { BootstrapColClassHeader } from '../../Styles/BootstrapConstants';
 import { Link } from 'react-router-dom';
 
-const HeaderCartButton = props => {
+const HeaderCartButton = (props) => {
   return (
-    <ul className="my-3">
-      {HeaderButtons.map(({displayName, to}) => (
-          <Link to={to} key={to}>
-            <li className={`${BootstrapColClassHeader} ${classes.button} btn btn-primary h-25 w-100`}>
+    <ul className="navbar-nav">
+      {HeaderButtons.map(({ displayName, to }) => (
+        <li className=" nav-item ">
+          <Link className={'nav-link'} to={to} key={to}>
             {displayName}
-            </li>
           </Link>
+        </li>
       ))}
     </ul>
   );

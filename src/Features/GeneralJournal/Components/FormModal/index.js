@@ -167,40 +167,40 @@ function FormModal({ onCloseModal, toggle }) {
         {creditInput}
       </form>
       <br />
-      <div className={`${classes.addmore} row`}>
-        <div className="col-lg-4">
-          <div className="row mx-1">
-            <div className="col-lg-6 ml-1">
+      <div className={classes['submit-error']}>
+        
+          <div className={classes['entry']}>
+            <div >
               <label>Add Debit Entry </label>
             </div>
-            <div className="col-lg-6">
+            <div>
               <button
-                className={`mr-2 btn btn-primary w-50`}
+                className={`btn btn-primary `}
                 onClick={() => addClickHandler('d')}
               >
                 +
             </button>
             </div>
           </div>
-        </div>
-        <div className="col-lg-4 mr-3">
-          <div className="row">
-            <div className="col-lg-6">
+        
+        
+          <div  className={classes['entry']}>
+            <div >
               <label>Add Credit Entry </label>
             </div>
-            <div className="col-lg-6">
+            <div >
               <button
-                className={`mr-2 btn btn-primary w-50`}
+                className={` btn btn-primary`}
                 onClick={() => addClickHandler('c')}
               >
                 +
             </button>
-            </div>
+            
           </div>
         </div>
-        <div className={`row ${classes['submit-error']}`}>
-          <div className="col-lg-8" />
-          <div className="col-lg-4">
+        <div className={classes['submit-section']}>
+        
+          <div >
            
               <p className="alert alert-warning" hidden={!error}>{error}</p>
             <button type="submit" className={`btn btn-primary ${classes['submit-button']}`} onClick={postGeneralEntryHandler} disabled={isPostingGeneralEntry}>
