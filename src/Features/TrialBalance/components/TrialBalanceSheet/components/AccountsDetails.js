@@ -1,18 +1,18 @@
 import React from 'react'
 
 function AccountsDetails({accountsDetails, accountsSum}) {
-    if(!accountsDetails) return null;
     return (
         <>
         <ol>
             {
-                Object.entries(accountsDetails).map(([key,value], index) => {
-                    const {accountName, balance} = value;
+                accountsDetails.map(([key,value], index) => {
+                    const {accountName, balance, accountType} = value;
                     return (
                     <div>
                         <li>
                             <span>{accountName + '  '}</span>
                             <span>{balance}</span>
+                            <span>{accountType}</span>
                         </li>
                     </div>);
                 })

@@ -4,6 +4,7 @@ import Dashboard from '../Features/Dashboard';
 import GeneralJournal from '../Features/GeneralJournal';
 import TrialBalance from '../Features/TrialBalance';
 import FinancialStatement from '../Features/FinancialStatement';
+import ClosingEntry from '../Features/ClosingEntries';
 
 
 function RouterSwitch() {
@@ -13,6 +14,7 @@ function RouterSwitch() {
             <Route exact path="/general-journal" component={GeneralJournal} />
             <Route exact path="/trial-balance" component={TrialBalance} />
             <Route exact path="/financial-statement" component={FinancialStatement} />
+            <Route exact path="/closing-entry" component={ClosingEntry} />
         </Switch>
     )
 }
