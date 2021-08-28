@@ -6,9 +6,11 @@
 .elemets-revenue-expense p {
   font-size: large;
 }
+
 .rev-exp-container {
   display: flex;
   justify-content: space-evenly;
+  animation: appear 1s ease-out forwards;
   /* background-color: rgb(167, 230, 241); */
 
   font-style: bold;
@@ -32,4 +34,34 @@
   font-style: bold;
   font-size: 30px;
   text-align: left;
+}
+.ending-balance,.owner-equity,.owner-withdrawl,.net-income{
+display: flex;
+justify-content: space-between;
+
+}
+.owner-statement{
+border: 2px solid white;
+box-shadow: 5px 2px wheat;
+width: 40%;
+border-radius: 5%;
+margin: auto;
+text-align: left;
+padding: 10px;
+animation: appear 1s ease-out forwards;
+}
+.assetliab{
+display: flex;
+flex-direction: column;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

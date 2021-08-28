@@ -13,6 +13,8 @@
   top: 15vh;
   left: 2%;
   width: 1000px;
+  max-height: 70%;
+  overflow-y: scroll;
   height: auto;
   margin: 2rem 10rem;
   background-color: white;

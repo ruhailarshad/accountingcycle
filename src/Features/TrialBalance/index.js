@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getTrialBalance } from './actions'
-import TrialBalanceSheetComponent from './components/TrialBalanceSheet';
+import TrialBalanceSheetComponent from './components/TrialBalanceSheet/Index';
 
 function TrialBalance() {
     useEffect(() => {
