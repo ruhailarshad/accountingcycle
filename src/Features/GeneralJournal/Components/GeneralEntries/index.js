@@ -68,15 +68,17 @@ function GeneralEntries({ toggleModal }) {
         <div className={classes.tableani}>
           <div className="col-12">
             <table className="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                  <td>S No</td>
-                  <td>Account Name</td>
-                  <td>Account Type</td>
-                  <td>Debit Amount</td>
-                  <td>Credit Amount</td>
-                </tr>
-              </thead>
+              {!loading && (
+                <thead>
+                  <tr>
+                    <td>S No</td>
+                    <td>Account Name</td>
+                    <td>Account Type</td>
+                    <td>Debit Amount</td>
+                    <td>Credit Amount</td>
+                  </tr>
+                </thead>
+              )}
               <tbody>
                 {loading && <LoadingSpinner />}
                 {!loading && renderGeneralEnrties()}
