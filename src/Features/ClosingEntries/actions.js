@@ -5,6 +5,31 @@ export const postClosing = () => {
     dispatch(postClosingEntriesRequest());
     try {
       const { data } = await postClosingEntries();
+      dispatch(postClosingIncome(data));
+    } catch (error) {
+      dispatch(postClosingEntriesError());
+    }
+  };
+};
+
+
+export const postClosingIncome = () => {
+  return async (dispatch, _getState, { services: { postClosingEntriesIncome } }) => {
+    dispatch(postClosingEntriesRequest());
+    try {
+      const { data } = await postClosingEntriesIncome();
+      dispatch(postClosingEntriesSuccess(data));
+    } catch (error) {
+      dispatch(postClosingEntriesError());
+    }
+  };
+};
+
+export const postClosingWithdrawal = () => {
+  return async (dispatch, _getState, { services: { postClosingEntriesWithdrawl } }) => {
+    dispatch(postClosingEntriesRequest());
+    try {
+      const { data } = await postClosingEntriesWithdrawl();
       dispatch(postClosingEntriesSuccess(data));
     } catch (error) {
       dispatch(postClosingEntriesError());
