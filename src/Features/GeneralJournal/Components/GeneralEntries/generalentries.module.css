@@ -1,6 +1,9 @@
 .tableani {
   animation: journal-appear 1s ease-out forwards;
 }
+.grey {
+  background-color: rgba(127, 130, 131, 0.1);
+}
 @keyframes journal-appear {
   from {
     opacity: 0;

@@ -24,15 +24,18 @@ function GeneralEntries({ toggleModal }) {
 
   const renderGeneralEnrties = () => {
     return generalJounralEntries.map((arr, index) => {
-      return arr.map((arr1, i) => (
-        <tr>
-          {i === 0 ? <td>{index + 1}</td> : <td></td>}
-          <td>{arr1.accountName}</td>
-          <td>{arr1.accountType}</td>
-          {arr1.debitAmount !== 0 ? <td>{arr1.debitAmount}</td> : <td></td>}
-          {arr1.creditAmount !== 0 ? <td>{arr1.creditAmount}</td> : <td></td>}
-        </tr>
-      ));
+      return arr.map((arr1, i) => {
+        const color = index % 2 === 0 ? 'grey' : 'white';
+        return (
+          <tr className={classes[color]}>
+            {i === 0 ? <td>{index + 1}</td> : <td></td>}
+            <td>{arr1.accountName}</td>
+            <td>{arr1.accountType}</td>
+            {arr1.debitAmount !== 0 ? <td>{arr1.debitAmount}</td> : <td></td>}
+            {arr1.creditAmount !== 0 ? <td>{arr1.creditAmount}</td> : <td></td>}
+          </tr>
+        );
+      });
     });
   };
 
@@ -67,7 +70,7 @@ function GeneralEntries({ toggleModal }) {
         </div>
         <div className={classes.tableani}>
           <div className="col-12">
-            <table className="table table-striped table-bordered table-hover">
+            <table className="table  table-bordered table-hover">
               {!loading && (
                 <thead>
                   <tr>
