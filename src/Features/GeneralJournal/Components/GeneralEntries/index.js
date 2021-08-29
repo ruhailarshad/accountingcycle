@@ -24,14 +24,21 @@ function GeneralEntries({ toggleModal }) {
 
   const renderGeneralEnrties = () => {
     return generalJounralEntries.map((arr, index) => {
+      const color = index % 2 === 0 ? 'grey' : '';
+
       return arr.map((arr1, i) => {
-        const color = index % 2 === 0 ? 'grey' : 'white';
+        const checker = arr1.creditAmount !== 0 ? 'shift' : 'stay';
+
         return (
           <tr className={classes[color]}>
-            {i === 0 ? <td>{index + 1}</td> : <td></td>}
-            <td>{arr1.accountName}</td>
-            <td>{arr1.accountType}</td>
+            {i === 0 ? <td>{arr1.entryDate.split('T')[0]}</td> : <td></td>}
+
+            <td className={classes[checker]}>{`${arr1.accountName} ${
+              arr1.isClosingEntry ? 'Closing' : ''
+            }`}</td>
+
             {arr1.debitAmount !== 0 ? <td>{arr1.debitAmount}</td> : <td></td>}
+
             {arr1.creditAmount !== 0 ? <td>{arr1.creditAmount}</td> : <td></td>}
           </tr>
         );
@@ -74,9 +81,9 @@ function GeneralEntries({ toggleModal }) {
               {!loading && (
                 <thead>
                   <tr>
-                    <td>S No</td>
+                    <td>Date</td>
                     <td>Account Name</td>
-                    <td>Account Type</td>
+
                     <td>Debit Amount</td>
                     <td>Credit Amount</td>
                   </tr>

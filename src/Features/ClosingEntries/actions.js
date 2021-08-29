@@ -43,7 +43,7 @@ export const postClosingEntriesRequest = () => {
   };
 };
 
-export const postClosingEntriesSuccess = (closingEntries) => {
+export const postClosingEntriesSuccess = () => {
   return {
     type: actionTypes.POST_CLOSING_ENTRIES_SUCCESS,
   };

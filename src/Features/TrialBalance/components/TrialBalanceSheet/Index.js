@@ -13,26 +13,28 @@ function TrialBalanceSheetComponent({
   const renderTrialBalance = () => {
     if (accountDetails) {
       return accountDetails.map(
-        ({ accountName, balance, accountType }, index) => (
-          <tr>
-            {accountName && <td>{accountName}</td>}
+        ({ accountName, balance, accountType }, index) => {
+         return balance !== 0 ? (
+            <tr>
+              <td>{accountName}</td>
 
-            {(accountType === 'Asset' || accountType === 'Expense') &&
-            balance ? (
-              <td>{balance}</td>
-            ) : (
-              <td></td>
-            )}
-            {(accountType === 'Liability' ||
-              accountType === 'Owner Equity' ||
-              accountType === 'Revenue') &&
-            balance ? (
-              <td>{balance}</td>
-            ) : (
-              <td></td>
-            )}
-          </tr>
-        )
+              {(accountType === 'Asset' || accountType === 'Expense') &&
+              balance !== 0 ? (
+                <td>{balance}</td>
+              ) : (
+                <td></td>
+              )}
+              {(accountType === 'Liability' ||
+                accountType === 'Owner Equity' ||
+                accountType === 'Revenue') &&
+              balance !== 0 ? (
+                <td>{balance}</td>
+              ) : (
+                <td></td>
+              )}
+            </tr>
+          ) : null
+        }
       );
     }
   };

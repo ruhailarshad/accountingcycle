@@ -102,7 +102,7 @@ function FinancialReport({ financialReportData }) {
             <p>${netIncome}</p>
           </div>
           <div className={classes['owner-withdrawl']}>
-            <b>Owner Withdrawl:</b>
+            <b>Owner Withdrawal:</b>
             <p>${ownerWithdrawlSum}</p>
           </div>
           <hr />
@@ -158,7 +158,7 @@ function FinancialReport({ financialReportData }) {
           <div>
             <h4>
               {' '}
-              {assetsSum} = {liabilitiesSum - ownerEquitySum}
+              {assetsSum} = {liabilitiesSum + ownerEquityStatement}
             </h4>
           </div>
         </div>
