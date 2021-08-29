@@ -1,71 +1,76 @@
 import React from 'react';
+import LoadingSpinner from '../../../components/UI/LoadingSpinner';
 import classes from './financialreport.module.css';
 function FinancialReport({ financialReportData }) {
+  const {
+    financialStatement: {
+      assetsSum,
+      revenueAccountSum,
+      expenseAccountSum,
+      liabilitiesSum,
+      ownerWithdrawlSum,
+      ownerEquitySum,
+    },
+  } = financialReportData;
 
+  const netIncome = revenueAccountSum - expenseAccountSum;
+  const ownerEquityStatement = ownerEquitySum + netIncome - ownerWithdrawlSum;
 
-  console.log(financialReportData);
+  const listOfData = (e) => {
+    let balanceData;
+    if (e === 'a') {
+      balanceData = financialReportData.financialStatement.assetsAccounts;
+    } else if (e === 'l') {
+      balanceData = financialReportData.financialStatement.liabilitiesAccounts;
+    } else if (e === 'e') {
+      balanceData = financialReportData.financialStatement.expenseAccounts;
+    } else {
+      balanceData = financialReportData.financialStatement.revenueAccounts;
+    }
 
-  const { financialStatement: { assetsSum,revenueSum,expenseSum,liabilitiesSum,netIncome } } = financialReportData;
-  const listOfFinancialReportData = (e) => {
-    const financialData =
-      e === 'e'
-        ? financialReportData.financialStatement.expenseAccounts
-        : financialReportData.financialStatement.revenueAccounts;
-
-    return financialData.map((arr, index) => (
-      <div className={classes['elemets-revenue-expense']}>
-        <p>{`${arr.accountName}: `}</p>
-        <div>{arr.balance}</div>
-      </div>
-    ));
-  };
-  const listOfBalanceSheetData = (e) => {
-    const balanceData =
-      e === 'a'
-        ? financialReportData.financialStatement.assetsAccounts
-        : financialReportData.financialStatement.liabilitiesAccounts;
-if(balanceData){
-    return balanceData.map((arr, index) => (
-      <div className={classes['elemets-revenue-expense']}>
-        <p>{`${arr.accountName}: `}</p>
-        <div>{arr.balance}</div>
-      </div>
-    ));
-}
+    if (balanceData) {
+      return balanceData.map((arr, index) => (
+        <div className={classes['elemets-revenue-expense']}>
+          <p>{`${arr.accountName}: `}</p>
+          <div>{arr.balance}</div>
+        </div>
+      ));
+    } else {
+    }
   };
   return (
     // <div>Financail Report Date is : {JSON.stringify(financialReportData)}</div>
     <section>
       {/* net income */}
       <div>
-       <div className={classes.header}>
+        <div className={classes.header}>
           <p
             className=" bg-info
 "
           >
             Net Income
           </p>
-        </div> 
+        </div>
         <div className={classes['rev-exp-container']}>
           <div className={classes.revenue}>
             <h1>Revenues</h1>
             <hr />
-            {listOfFinancialReportData('r')}
+            {listOfData('r')}
 
             <div className={classes['elemets-revenue-expense']}>
               <h4>Total :</h4>
 
-              <div className={classes.total}>{revenueSum}</div>
+              <div className={classes.total}>{revenueAccountSum}</div>
             </div>
           </div>
           <div className={classes.expense}>
             <h1>Expenses</h1>
             <hr />
-            {listOfFinancialReportData('e')}
+            {listOfData('e')}
 
             <div className={classes['elemets-revenue-expense']}>
               <h4>Total :</h4>
-              <div className={classes.total}>{expenseSum}</div>
+              <div className={classes.total}>{expenseAccountSum}</div>
             </div>
           </div>
         </div>
@@ -77,7 +82,7 @@ if(balanceData){
           <p> Total Revenue - Total Expense = {netIncome}</p>
         </div>
       </div>
-{/* owner equity statement */}
+      {/* owner equity statement */}
       <div>
         <div className={classes.header}>
           <p
@@ -88,43 +93,43 @@ if(balanceData){
           </p>
         </div>
         <div className={classes['owner-statement']}>
-        <div className={classes['owner-equity']}>
-          <b>Owner Equity:</b>
-          <p>$30000</p>
+          <div className={classes['owner-equity']}>
+            <b>Owner Equity:</b>
+            <p>${ownerEquitySum}</p>
+          </div>
+          <div className={classes['net-income']}>
+            <b>Net Income</b>
+            <p>${netIncome}</p>
+          </div>
+          <div className={classes['owner-withdrawl']}>
+            <b>Owner Withdrawl:</b>
+            <p>${ownerWithdrawlSum}</p>
+          </div>
+          <hr />
+          <div className={classes['ending-balance']}>
+            <b>Ending Balance Of Owner:</b>
+            <p>${ownerEquityStatement}</p>
+          </div>
         </div>
-        <div className={classes['net-income']}>
-          <b>Net Income</b>
-          <p>${revenueSum - expenseSum}</p>
-        </div>
-        <div className={classes['owner-withdrawl']}>
-        <b>Owner Withdrawl:</b>
-        <p>$0</p>
-        </div>
-      <hr/>
-      <div className={classes['ending-balance']}>
-        <b>Ending Balance Of Owner:</b>
-        <p>$60000</p>
-      </div>
-      </div>
       </div>
 
       {/* BalanceSheet */}
-      <br/>
-      
+      <br />
+
       <div>
-       <div className={classes.header}>
+        <div className={classes.header}>
           <p
             className=" bg-info
 "
           >
-           Balance Sheet
+            Balance Sheet
           </p>
-        </div> 
+        </div>
         <div className={classes['rev-exp-container']}>
           <div className={classes.revenue}>
             <h1>Assets</h1>
             <hr />
-            {listOfBalanceSheetData('a')}
+            {listOfData('a')}
 
             <div className={classes['elemets-revenue-expense']}>
               <h4>Total :</h4>
@@ -135,7 +140,7 @@ if(balanceData){
           <div className={classes.expense}>
             <h1>Liability</h1>
             <hr />
-            {listOfBalanceSheetData('l')}
+            {listOfData('l')}
 
             <div className={classes['elemets-revenue-expense']}>
               <h4>Total :</h4>
@@ -146,16 +151,18 @@ if(balanceData){
         <br />
         <div className={`${classes.netincome}  ${classes.assetliab}`}>
           <div>
-          <b>
-            <p> Assets=Liability + O.E </p>
-          </b>
+            <b>
+              <p> Assets=Liability + O.E </p>
+            </b>
           </div>
           <div>
-          <p>  {assetsSum}  = {liabilitiesSum - revenueSum}</p>
+            <h4>
+              {' '}
+              {assetsSum} = {liabilitiesSum - ownerEquitySum}
+            </h4>
           </div>
         </div>
       </div>
-      
     </section>
   );
 }

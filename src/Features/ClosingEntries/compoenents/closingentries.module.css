@@ -1,6 +1,19 @@
-.a:hover {
+.button {
+  margin: auto;
+  width: 10rem;
+  height: 3rem;
+  text-align: center;
+}
+.header p {
+  padding: 10px 10px;
+  color: white;
+  font-style: bold;
+  font-size: 30px;
+  text-align: left;
+}
+
+.button:hover {
   animation: bump 300ms ease-out;
-  color: black;
 }
 
 @keyframes bump {

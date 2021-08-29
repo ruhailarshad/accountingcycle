@@ -1,8 +1,7 @@
 .header {
   height: 80px;
- 
 }
-nav{
+nav {
   animation: nav-appear 1s ease-out forwards;
 }
 .header-logo {

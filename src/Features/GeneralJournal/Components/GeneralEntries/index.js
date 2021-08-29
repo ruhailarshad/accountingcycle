@@ -56,7 +56,7 @@ function GeneralEntries({ toggleModal }) {
               <div className="col-lg-8 d-flex justify-content-end">
                 <button
                   style={{ height: '40px' }}
-                  className="btn btn-primary mx-2 mt-3"
+                  className={`btn btn-primary mx-2 mt-3 ${classes['entry-button']}`}
                   onClick={toggleModal}
                 >
                   Add Entry

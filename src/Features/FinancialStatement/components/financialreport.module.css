@@ -18,6 +18,8 @@
 .revenue,
 .expense {
   width: 21rem;
+  max-width: 50%;
+  overflow-y: auto;
 }
 .total {
   border-top: 1px solid black;
@@ -35,24 +37,26 @@
   font-size: 30px;
   text-align: left;
 }
-.ending-balance,.owner-equity,.owner-withdrawl,.net-income{
-display: flex;
-justify-content: space-between;
-
+.ending-balance,
+.owner-equity,
+.owner-withdrawl,
+.net-income {
+  display: flex;
+  justify-content: space-between;
 }
-.owner-statement{
-border: 2px solid white;
-box-shadow: 5px 2px wheat;
-width: 40%;
-border-radius: 5%;
-margin: auto;
-text-align: left;
-padding: 10px;
-animation: appear 1s ease-out forwards;
+.owner-statement {
+  border: 2px solid white;
+  box-shadow: 5px 2px wheat;
+  width: 40%;
+  border-radius: 5%;
+  margin: auto;
+  text-align: left;
+  padding: 10px;
+  animation: appear 1s ease-out forwards;
 }
-.assetliab{
-display: flex;
-flex-direction: column;
+.assetliab {
+  display: flex;
+  flex-direction: column;
 }
 @keyframes appear {
   from {

@@ -3,6 +3,6 @@ import { BASE_URL } from './BaseURL';
 
 const postClosingEntry = `${BASE_URL.local}/closing-entry/closing`;
 
-export const getFinancialStatement = () => {
-    return axios.get(postClosingEntry, {}, {});
-}
+export const postClosingEntries = () => {
+  return axios.get(postClosingEntry, {}, {});
+};
