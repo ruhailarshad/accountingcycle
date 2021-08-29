@@ -4,6 +4,13 @@
 .grey {
   background-color: rgba(127, 130, 131, 0.1);
 }
+.shift {
+  padding-left: 100px !important;
+  /* background-color: black; */
+}
+.stay {
+  padding-right: 100px !important;
+}
 @keyframes journal-appear {
   from {
     opacity: 0;
