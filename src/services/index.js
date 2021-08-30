@@ -1,7 +1,7 @@
 import { postGeneralEntry, getGeneralEntry } from './GeneralJounral';
 import {getTrialBalanceSheet} from './TrialBalanceSheet';
 import { getFinancialStatement } from "./FinancialStatement";
-import {postClosingEntries, postClosingEntriesIncome, postClosingEntriesWithdrawl} from './ClosingEntry';
+import {postClosingEntries, postClosingEntriesIncome, postClosingEntriesWithdrawl, postClosingEntriesDelete} from './ClosingEntry';
 
 export const services = {
     postGeneralEntry,
@@ -10,5 +10,6 @@ export const services = {
     getFinancialStatement,
     postClosingEntries,
     postClosingEntriesIncome,
-    postClosingEntriesWithdrawl
+    postClosingEntriesWithdrawl,
+    postClosingEntriesDelete
 };

@@ -5,7 +5,7 @@ export const postClosing = () => {
     dispatch(postClosingEntriesRequest());
     try {
       const { data } = await postClosingEntries();
-      dispatch(postClosingIncome(data));
+      dispatch(postClosingIncome());
     } catch (error) {
       dispatch(postClosingEntriesError());
     }
@@ -18,7 +18,7 @@ export const postClosingIncome = () => {
     dispatch(postClosingEntriesRequest());
     try {
       const { data } = await postClosingEntriesIncome();
-      dispatch(postClosingEntriesSuccess(data));
+      dispatch(postClosingWithdrawal());
     } catch (error) {
       dispatch(postClosingEntriesError());
     }
@@ -30,6 +30,19 @@ export const postClosingWithdrawal = () => {
     dispatch(postClosingEntriesRequest());
     try {
       const { data } = await postClosingEntriesWithdrawl();
+      dispatch(postClosingDelete());
+    } catch (error) {
+      dispatch(postClosingEntriesError());
+    }
+  };
+};
+
+
+export const postClosingDelete = () => {
+  return async (dispatch, _getState, { services: { postClosingEntriesDelete } }) => {
+    dispatch(postClosingEntriesRequest());
+    try {
+      const { data } = await postClosingEntriesDelete();
       dispatch(postClosingEntriesSuccess(data));
     } catch (error) {
       dispatch(postClosingEntriesError());

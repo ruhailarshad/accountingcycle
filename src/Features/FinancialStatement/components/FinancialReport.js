@@ -10,10 +10,11 @@ function FinancialReport({ financialReportData }) {
       liabilitiesSum,
       ownerWithdrawlSum,
       ownerEquitySum,
+      netIncome
     },
   } = financialReportData;
 
-  const netIncome = revenueAccountSum - expenseAccountSum;
+  // const netIncome = revenueAccountSum - expenseAccountSum;
   const ownerEquityStatement = ownerEquitySum + netIncome - ownerWithdrawlSum;
 
   const listOfData = (e) => {
@@ -30,13 +31,14 @@ function FinancialReport({ financialReportData }) {
 
     if (balanceData) {
       return balanceData.map((arr, index) => (
+        
         <div className={classes['elemets-revenue-expense']}>
-          <p>{`${arr.accountName}: `}</p>
+          <p>{arr.accountName }</p>
           <div>{arr.balance}</div>
         </div>
+        
       ));
-    } else {
-    }
+    } 
   };
   return (
     // <div>Financail Report Date is : {JSON.stringify(financialReportData)}</div>
@@ -60,7 +62,9 @@ function FinancialReport({ financialReportData }) {
             <div className={classes['elemets-revenue-expense']}>
               <h4>Total :</h4>
 
-              <div className={classes.total}>{revenueAccountSum}</div>
+              <div className={classes.total}>
+                { revenueAccountSum}
+              </div>
             </div>
           </div>
           <div className={classes.expense}>
@@ -70,7 +74,9 @@ function FinancialReport({ financialReportData }) {
 
             <div className={classes['elemets-revenue-expense']}>
               <h4>Total :</h4>
-              <div className={classes.total}>{expenseAccountSum}</div>
+              <div className={classes.total}>
+                {expenseAccountSum}
+              </div>
             </div>
           </div>
         </div>
@@ -79,7 +85,10 @@ function FinancialReport({ financialReportData }) {
           <b>
             <p>Net Income : </p>
           </b>
-          <p> Total Revenue - Total Expense = {netIncome}</p>
+          <p>
+            {' '}
+            Total Revenue - Total Expense = {netIncome}
+          </p>
         </div>
       </div>
       {/* owner equity statement */}

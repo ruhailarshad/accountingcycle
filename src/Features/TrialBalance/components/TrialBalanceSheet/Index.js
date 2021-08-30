@@ -15,25 +15,25 @@ function TrialBalanceSheetComponent({
       return accountDetails.map(
         ({ accountName, balance, accountType }, index) => {
          return balance !== 0 ? (
-            <tr>
-              <td>{accountName}</td>
+           <tr>
+             <td>{accountName}</td>
 
-              {(accountType === 'Asset' || accountType === 'Expense') &&
-              balance !== 0 ? (
-                <td>{balance}</td>
-              ) : (
-                <td></td>
-              )}
-              {(accountType === 'Liability' ||
-                accountType === 'Owner Equity' ||
-                accountType === 'Revenue') &&
-              balance !== 0 ? (
-                <td>{balance}</td>
-              ) : (
-                <td></td>
-              )}
-            </tr>
-          ) : null
+             {(accountType === 'Asset' || accountType === 'Expense') &&
+             balance !== 0 ? (
+               <td>{balance < 0 ? -1 * balance : balance}</td>
+             ) : (
+               <td></td>
+             )}
+             {(accountType === 'Liability' ||
+               accountType === 'Owner Equity' ||
+               accountType === 'Revenue') &&
+             balance !== 0 ? (
+               <td>{balance < 0 ? -1 * balance : balance}</td>
+             ) : (
+               <td></td>
+             )}
+           </tr>
+         ) : null;
         }
       );
     }

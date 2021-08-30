@@ -31,7 +31,7 @@ function GeneralEntries({ toggleModal }) {
 
         return (
           <tr className={classes[color]}>
-            {i === 0 ? <td>{arr1.entryDate.split('T')[0]}</td> : <td></td>}
+            {i === 0 ? <td>{arr1?.Date?.split('T')[0]}</td> : <td></td>}
 
             <td className={classes[checker]}>{`${arr1.accountName} ${
               arr1.isClosingEntry ? 'Closing' : ''
@@ -79,7 +79,7 @@ function GeneralEntries({ toggleModal }) {
           <div className="col-12">
             <table className="table  table-bordered table-hover">
               {!loading && (
-                <thead>
+                <thead className={classes.thead}>
                   <tr>
                     <td>Date</td>
                     <td>Account Name</td>
